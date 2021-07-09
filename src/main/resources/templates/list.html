@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <title>Books list available</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/stsm.css" th:href="@{/css/stsm.css}">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" th:href="@{/images/favicon.ico}" >
+    <span >
+         <a th:href="|@{/book/}?language=es|" th:text="#{book.language.spanish}" class="language">spanish</a>
+         <a th:href="|@{/book/}?language=en|" th:text="#{book.language.english}" class="language">english</a>
+    </span>
+    <fieldset>
+    <div align="center">
+        <img alt="Logo" src="/images/logoBook.png" th:src="@{/images/logoBook.png}" width="1050px" height="200px">
+    </div>
+    </fieldset>
+</head>
+<body>
+<div>
+    <!--/*@thymesVar id="book" type="com.silvana.bookstore.domain.Book"*/-->
+    <fieldset>
+        <legend th:text="#{title.books}" class="legend">listado de libros</legend>
+        <div>
+            <form action="#" th:action="@{/book/sort}" method="post">
+            <label for="sortby" th:text="#{book.sortby}" class="label">sort</label>
+            <select name="sortby" id="sortby" class="create">
+               <option th:each="sortBy : ${T(com.silvana.bookstore.domain.SortBy).values()}"
+                        th:value="${sortBy}"
+                        th:text="#{${'book.sortby.'+ sortBy}}">
+                </option>
+            </select>
+                <button type="submit" th:text="#{book.sortby.selected}" class="create">ok</button>
+            </form>
+        </div>
+        <div th:object="${book}">
+            <table>
+                <thead>
+                <tr>
+                    <th th:text="#{book.isbn}">ISBN</th>
+                    <th th:text="#{book.title}">Title</th>
+                    <th th:text="#{book.author}">Author</th>
+                    <th th:text="#{book.editorial}">editorial</th>
+                    <th th:text="#{book.category}">category</th>
+                    <th th:text="#{book.amount}">category</th>
+                    <th th:text="#{book.currency}">category</th>
+                    <th th:text="#{book.publishedDate}">published date</th>
+                    <th th:text="#{book.isLowered}">is Lowered</th>
+                    <th th:text="#{book.edit}">edit</th>
+                    <th th:text="#{book.delete}">delete</th>
+                    <th th:text="#{book.pdf}">pdf</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="listBook : ${allbooks}">
+                    <td th:text="${listBook.isbn}"></td>
+                    <td th:text="${listBook.title}"></td>
+                    <td th:text="${listBook.author}"></td>
+                    <td th:text="${listBook.editorial}"></td>
+                    <td th:text="${listBook.category}"></td>
+                    <td th:text="${listBook.amount}"></td>
+                    <td th:text="${listBook.currency}"></td>
+                    <td th:text="${#temporals.format(listBook.publishedDate, 'dd-MM-yyyy')}"></td>
+                    <td th:text="${listBook.isLowered} ? #{book.true} : #{book.false}">
+                    </td>
+                    <td >
+                        <form th:action="@{'/book/'+ ${listBook.id}}" method="get">
+                            <button class="edit" type="submit" th:text="#{book.edit}">edit</button>
+                        </form>
+                    </td>
+                    <td >
+                       <form action="#" th:action="@{'/book/'+ ${listBook.id}}"  method="post">
+                            <button class="delete" type="submit" th:text="#{book.delete}">delete</button>
+                        </form>
+                     </td>
+                    <td >
+                        <form action="#" th:action="@{'/book/pdf/'+ ${listBook.id}}"  method="get">
+                            <button class="pdf" type="submit" th:text="#{book.pdf}">pdf</button>
+                        </form>
+                    </td>
+                 </tr>
+                 </tbody>
+             </table>
+         </div>
+        <div>
+            <fieldset>
+                <div class="btn">
+                    <button type="submit" class="create">
+                        <a th:href="@{/book/create}" th:text="#{book.create}" style="color: indianred">creation of a new book</a>
+                    </button>
+                </div>
+            </fieldset>
+        </div>
+     </fieldset>
+ </div>
+
+ </body>
+ </html>

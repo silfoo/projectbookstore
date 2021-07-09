@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <title>Books list edit available</title>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/stsm.css" th:href="@{/css/stsm.css}">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" th:href="@{/images/favicon.ico}" >
+    <fieldset>
+        <div align="center">
+            <img alt="Logo" src="/images/logoBook.png" th:src="@{/images/logoBook.png}" width="1050px" height="200px">
+        </div>
+    </fieldset>
+</head>
+<body>
+<div>
+    <!--/*@thymesVar id="book" type="com.silvana.bookstore.domain.Book"*/-->
+    <form action="#" th:action="@{'/book/edit/update/'+${book.id}}" th:id="${book.id}"
+          th:object="${book}" method="post">
+        <fieldset>
+            <legend th:text="#{book.edit}" class="legend">modificacion de libros</legend>
+            <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+                <li th:each="err : ${#fields.errors('*')}">
+                     <div th:with="expr_result = ${err}">
+                         <div th:if="${expr_result.contains('NumberFormatException')}">
+                            <span th:text="#{book.error.amountdate}"></span>
+                         </div>
+                        <div th:if="${expr_result.contains('IllegalArgumentException')}">
+                            <span th:text="#{book.error.date}"></span>
+                         </div>
+                        <div th:if="${!expr_result.contains('IllegalArgumentException')}
+                                    and ${!expr_result.contains('NumberFormatException')}">
+                            <span th:text="${err}"></span>
+                        </div>
+                     </div>
+                </li>
+            </ul>
+            <div>
+                <label for="title">
+                    <span th:text="#{book.title}">title</span>
+                </label>
+                <input type="text" th:field="*{title}" th:errorclass="fieldError"/>
+            </div>
+            <div>
+                <label for="isbn">
+                    <span th:text="#{book.isbn}">isbn</span>
+                </label>
+                <input type="text" th:field="*{isbn}" th:errorclass="fieldError"/>
+            </div>
+            <div>
+                <label for="author">
+                    <span th:text="#{book.author}">author</span>
+                </label>
+                <input type="text" th:field="*{author}" th:errorclass="fieldError"/>
+            </div>
+            <div>
+                <label for="publishedDate">
+                    <span th:text="#{book.publishedDate}+ #{book.publishedDate.format}">publishedDate</span>
+                </label>
+                <input type="text" th:field="*{publishedDate}" th:errorclass="fieldError"/>
+            </div>
+            <div>
+                <label for="editorial">
+                    <span th:text="#{book.editorial}">editorial</span>
+                </label>
+                <input type="text" th:field="*{editorial}" th:errorclass="fieldError"/>
+            </div>
+            <div>
+                <label for="category" th:text="#{book.category}">category</label>
+                <select th:field="*{category}">
+                    <option th:each="category: ${allCategory}" th:value="${category}"
+                            th:text="#{${'book.category.' + category}}" th:checked="${book.getCategory()}"></option>
+                </select>
+            </div>
+            <div>
+                <label for="amount">
+                    <span th:text="#{book.amount}">amount</span>
+                </label>
+                <input type="text" th:field="*{amount}" th:errorclass="fieldError"/>
+            </div>
+            <div>
+            <label for="currency" th:text="#{book.currency}">Type</label>
+            <select th:field="*{currency}">
+                <option th:each="currency: ${allCurrency}" th:value="${currency}"
+                        th:text="#{${'book.currency.' + currency}}" th:checked="${book.getCurrency()}"></option>
+            </select>
+            </div>
+            <div>
+                <label th:for="${#ids.next('isLowered')}" th:text="#{book.isLowered}">Lowered</label>
+                <input type="checkbox" th:field="*{isLowered}">
+            </div>
+            <div class="submit">
+                <button type="submit" th:text="#{book.save}" class="create">Add new book</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div>
+    <fieldset>
+        <div class="btn">
+            <button type="submit" class="create">
+                <a th:href="@{/book/list}" th:text="#{book.cancel}" style="color: indianred">return book list</a>
+            </button>
+        </div>
+    </fieldset>
+</div>
+</body>
+</html>
