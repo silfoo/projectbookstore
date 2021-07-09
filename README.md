@@ -24,7 +24,7 @@ The dependencies are managed by Maven
 The database is H2
 
 
-#### Model
+### Model
   
 In the package `domain` we could find the POJO `Book.java` that it has all characteristics for the books.
 I managed it with `@annotation`, that was useful to create getters, setters, constructors, toString(), and the Entity for the database.
@@ -65,12 +65,12 @@ public class BookService  {
 
 Finally, I created different Enum classes to manage the options to sort by, to choose currency and category, those are the ones I used in my queries.
 
-#### View
+### View
 
 The templating engine used for the view is `Thymeleaf`. 
 
 
-#### Controller
+### Controller
 
 My controller `BookStoreController.java` responds to the bookstore HTTP requests, loads the data Model and returns the views.
 
@@ -93,7 +93,7 @@ public class BookStoreController {
 }
 ```
 
-#### Dependencies
+### Dependencies
 
 I used Maven to manage all dependencies:
 - lombok
@@ -104,19 +104,19 @@ I used Maven to manage all dependencies:
 - springBoot-Thymeleaf
 - apache.pdfbox
  
-#### Database
+### Database
 
  - `data.sql`
  
  In this file I created some initial information about books, and save it into the database. 
  All information that we will modify is only temporal, in any case, if you want to change any information, you are available to do it using this file.
 
-#### i18n
+### i18n
 
 - `messages.properties`
 - `messages_es.properties`
 
-### How to run the project
+## How to run the project
 
 To run this project using the web server, the `application.properties` indicate the specific port that will run.
 You are available to changed it if you need it.
