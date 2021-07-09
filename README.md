@@ -3,12 +3,17 @@
 
 This is a basic project about a little library that helped me understand how to work with Spring Boot and I want it to share with you.
 
+![BookStore list screenShoot](BoosStore.png)
+
+
 This library shows the list of books and its details like price, author, category, title and little more. 
 You can edit, delete and generate pdf for each book, and of course create a new one, which you will see in the main list.
 
 Also, if you are looking for some specific information, you could sort it by a different column than the one in the list.
 
 The languages, I chose to give you two options: English and Spanish.
+
+---
 
 ## Architecture
 
