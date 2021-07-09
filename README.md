@@ -23,7 +23,6 @@ The dependencies are managed by Maven
 
 The database is H2
 
-
 ### Model
   
 In the package `domain` we could find the POJO `Book.java` that it has all characteristics for the books.
