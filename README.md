@@ -5,7 +5,6 @@ This is a basic project about a little library that helped me understand how to 
 
 ![BookStore list screenShoot](BoosStore.png)
 
-
 This library shows the list of books and its details like price, author, category, title and little more. 
 You can edit, delete and generate pdf for each book, and of course create a new one, which you will see in the main list.
 
