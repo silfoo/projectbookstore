@@ -105,7 +105,9 @@ I used Maven to manage all dependencies:
 ### Database
 
  - `data.sql`
- 
+
+![H2 Database BookStore screenShoot](H2databaseBookStore.png) 
+
  In this file I created some initial information about books, and save it into the database. 
  All information that we will modify is only temporal, in any case, if you want to change any information, you are available to do it using this file.
 
