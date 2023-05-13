@@ -23,7 +23,7 @@ public class GeneratePDF {
     /**
      * field log, pdf by console different activity in the project
      */
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(GeneratePDF.class);
+    private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(GeneratePDF.class);
 
      /**
      * create pdf and convert it to byte for show it in the browser
@@ -33,7 +33,7 @@ public class GeneratePDF {
      */
     public static byte[] createPDF(Book book) {
 
-        log.info("Create PDF --> book: " + book.toString());
+        LOG.info("Creating PDF of book: {}", book.toString());
 
         try (PDDocument doc = new PDDocument()) {
 
@@ -72,7 +72,7 @@ public class GeneratePDF {
                 cont.newLine(); cont.newLine(); cont.newLine(); cont.newLine();
                 cont.newLineAtOffset(10, 10);
                 cont.setFont(PDType1Font.HELVETICA, 10);
-                cont.showText("print date: " + LocalDate.now().toString());
+                cont.showText("print date: " + LocalDate.now());
                 cont.endText();
                 String imgFileName2 = "src/main/resources/static/images/logo2.png";
                 PDImageXObject pdImage2 = PDImageXObject.createFromFile(imgFileName2, doc);
@@ -84,7 +84,7 @@ public class GeneratePDF {
             return out.toByteArray();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error("Pdf of book {} could not be created. {}", book.getTitle(), e.getMessage());
             return null;
         }
 

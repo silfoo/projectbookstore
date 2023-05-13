@@ -12,10 +12,10 @@ public enum SortBy {
     AUTHOR,
     TITLE,
     CURRENCY,
-    ISLOWERED,
+    IS_LOWERED,
     ISBN,
     EDITORIAL,
     CATEGORY,
-    PUBLISHED_DATE;
+    PUBLISHED_DATE
 
 }

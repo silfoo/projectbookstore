@@ -12,11 +12,15 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @Configuration
 public class MessageValidatorConfig {
 
+    private final MessageSource messageSource;
+
     /**
-     * MessageSource dependency injection
+     * MessageSource dependency injection by constructor
      */
     @Autowired
-    private MessageSource messageSource;
+    public MessageValidatorConfig(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     /**
      * configuration bean about error messages

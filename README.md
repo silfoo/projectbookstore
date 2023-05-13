@@ -72,7 +72,7 @@ The templating engine used for the view is `Thymeleaf`.
 
 My controller `BookStoreController.java` responds to the bookstore HTTP requests, loads the data Model and returns the views.
 
-The base url in the request mapping is "/book", but we need to call "/book/" or "/book/list" to get a successful response.
+The base url in the request mapping is "/book", but we could call it "/book/" or "/book/list" too.
 I use a method `view(Model model)` to show the main list with all books.
 
 ```Java
@@ -83,7 +83,7 @@ public class BookStoreController {
     @Autowired
     private BookService bookService;
     
-    @GetMapping({"/", "/list"})
+    @GetMapping({"","/", "/list"})
     public String view(Model model) {
         model.addAttribute("allbooks", this.bookService.findAll());
         return "list";
@@ -109,7 +109,7 @@ I used Maven to manage all dependencies:
 ![H2 Database BookStore screenShoot](H2databaseBookStore.png) 
 
  In this file I created some initial information about books, and save it into the database. 
- All information that we will modify is only temporal, in any case, if you want to change any information, you are available to do it using this file.
+ All information that we will modify is only temporal, in any case, if you want to change any information, you are available to do it using the file.
 
 ### i18n
 
@@ -120,6 +120,19 @@ I used Maven to manage all dependencies:
 
 To run this project using the web server, the `application.properties` indicate the specific port that will run.
 You are available to changed it if you need it.
+
+
 To explore the H2 database, the username and password are in `application.properties`, and to access it hit this url: http://localhost:8081/h2-console on your web browser.
 
+## Upgrade project
 
+This is a new version: 0.0.2
+
+I upgraded the project to refactoring some methods. I moved the logic block of the controller to the services, and also, the ordering query has been changed for a more efficient one. 
+
+You could get more information in https://www.baeldung.com/spring-data-jpa-query
+
+
+## Feedback
+
+Please, let me know your feedback, I will be glad to hear from you. Regards!
