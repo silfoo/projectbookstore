@@ -126,7 +126,16 @@ To explore the H2 database, the username and password are in `application.proper
 
 ## Upgrade project
 
-This is a new version: 0.0.2
+### Version : 0.0.3
+
+Updated library:
+* Java 17
+* Spring boot 3.1.0
+* H2 2.1.214
+* Apache pdfbook 2.0.27
+* Hibernate 8
+
+### Version: 0.0.2
 
 I upgraded the project to refactoring some methods. I moved the logic block of the controller to the services, and also, the ordering query has been changed for a more efficient one. 
 

@@ -1,12 +1,12 @@
 package com.silvana.bookstore.domain;
 
 import com.silvana.bookstore.utils.LocalDateConverter;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -33,7 +33,7 @@ public class Book implements Serializable {
      * is the internal book identification number
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
@@ -41,8 +41,8 @@ public class Book implements Serializable {
      * this message is manager by messages.properties (i18n)
      *
      */
-    @NotEmpty (message = "{notempty.book.title}")
-    @NotBlank  (message = "{notblank.book.title}")
+    @NotEmpty(message = "{notempty.book.title}")
+    @NotBlank(message = "{notblank.book.title}")
     @NonNull
     @Length(max=100)
     private String title;
@@ -90,7 +90,7 @@ public class Book implements Serializable {
     private Boolean isLowered;
 
     /**
-     * book category, its a Enum.class
+     * book category, it's an Enum Class
      */
     @Enumerated(EnumType.STRING)
     private Category category;
@@ -107,7 +107,7 @@ public class Book implements Serializable {
      * this message is manager by messages.properties (i18n)
      */
     @NotNull(message = "{notnull.book.amount}")
-    @DecimalMin(value = "0.0" , inclusive = true, message = "{decimalmin.bok.amount}")
+    @DecimalMin(value = "0.0" , message = "{decimalmin.bok.amount}")
     @Digits(integer = 5, fraction = 2, message = "{digits.book.amount}")
     private BigDecimal amount;
 

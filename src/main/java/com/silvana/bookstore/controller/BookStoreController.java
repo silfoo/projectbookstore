@@ -6,6 +6,7 @@ import com.silvana.bookstore.domain.Currency;
 import com.silvana.bookstore.domain.SortBy;
 import com.silvana.bookstore.service.BookServiceImpl;
 import com.silvana.bookstore.service.PdfServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 

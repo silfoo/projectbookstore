@@ -1,8 +1,8 @@
 package com.silvana.bookstore.utils;
 
+import jakarta.persistence.AttributeConverter;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.AttributeConverter;
 import java.sql.Date;
 import java.time.LocalDate;
 
